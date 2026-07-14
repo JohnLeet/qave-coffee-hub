@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Coffee as CoffeeIcon, Cog, Plus, Check } from "lucide-react";
+import { Coffee as CoffeeIcon, Plus, Check } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import type { Coffee, Machine } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
