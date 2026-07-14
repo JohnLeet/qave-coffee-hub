@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Coffee as CoffeeIcon, Cog, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
+import { Coffee as CoffeeIcon, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useI18n } from "@/lib/i18n";
 import { coffees } from "@/lib/data";
