@@ -200,10 +200,10 @@ export function CartDrawer() {
                     className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3"
                   >
                     <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white"
+                      className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl"
                       style={{ background: coffee.gradient }}
                     >
-                      <CoffeeIcon className="h-5 w-5" />
+                      <img src={coffee.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-sm font-medium">{coffee.name[lang]}</div>
