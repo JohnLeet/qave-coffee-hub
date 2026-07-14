@@ -63,10 +63,14 @@ export function CartDrawer() {
                 <div className="space-y-3">
                   <div className="overflow-hidden rounded-2xl border border-border bg-card">
                     <div
-                      className="flex h-24 w-full items-center justify-center"
+                      className="relative h-28 w-full overflow-hidden"
                       style={{ background: machineInCart.gradient }}
                     >
-                      <Cog className="h-8 w-8 text-white/50" />
+                      <img
+                        src={machineInCart.image}
+                        alt={machineInCart.name[lang]}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
                     </div>
                     <div className="p-4">
                       <div className="flex items-start justify-between gap-3">
