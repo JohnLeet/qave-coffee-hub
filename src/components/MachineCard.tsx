@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Check, CoffeeIcon, Cog, Plus } from "lucide-react";
+import { ArrowRight, Check, CoffeeIcon, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useCart } from "@/lib/cart";
 import type { Machine } from "@/lib/data";
