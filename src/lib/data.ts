@@ -22,6 +22,7 @@ export type Machine = {
   freeThresholdKg: number;
   specs: { label: { ru: string; uz: string }; value: { ru: string; uz: string } }[];
   gradient: string;
+  image: string;
 };
 
 export type Coffee = {
