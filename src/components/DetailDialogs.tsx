@@ -25,12 +25,16 @@ export function MachineDetail({
         {machine && (
           <>
             <div
-              className="relative flex aspect-[16/9] w-full items-center justify-center"
+              className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden"
               style={{ background: machine.gradient }}
             >
-              <Cog className="h-24 w-24 text-white/25" />
+              <img
+                src={machine.image}
+                alt={machine.name[lang]}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
               {isThisFree && (
-                <span className="absolute left-4 top-4 rounded-full bg-[var(--success)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--success-foreground)]">
+                <span className="absolute left-4 top-4 z-10 rounded-full bg-[var(--success)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--success-foreground)]">
                   {t("cart_free_badge")}
                 </span>
               )}
