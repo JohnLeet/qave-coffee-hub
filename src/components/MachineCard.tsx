@@ -35,7 +35,17 @@ export function MachineCard({
         className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden text-left"
         style={{ background: machine.gradient }}
       >
-        <Cog className="h-24 w-24 text-white/25 transition-transform duration-500 group-hover:scale-110" />
+        <img
+          src={machine.image}
+          alt={machine.name[lang]}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%)" }}
+        />
         <div className="absolute inset-x-4 top-4 flex justify-between">
           <Badge
             variant="secondary"
