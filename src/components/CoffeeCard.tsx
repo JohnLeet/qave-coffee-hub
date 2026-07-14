@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CoffeeIcon, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
@@ -25,19 +25,24 @@ export function CoffeeCard({ coffee, onOpen }: { coffee: Coffee; onOpen?: (c: Co
         className="relative flex aspect-[4/5] w-full items-end overflow-hidden p-5 text-left text-white"
         style={{ background: coffee.gradient }}
       >
-        <CoffeeIcon className="absolute right-5 top-5 h-6 w-6 text-white/70" />
+        <img
+          src={coffee.image}
+          alt={coffee.name[lang]}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)" }}
+        />
         <div className="relative z-10">
-          <div className="text-[11px] uppercase tracking-widest text-white/70">
+          <div className="text-[11px] uppercase tracking-widest text-white/80">
             {coffee.roast[lang]}
           </div>
-          <div className="mt-1 font-display text-2xl font-semibold leading-tight">
+          <div className="mt-1 font-display text-2xl font-semibold leading-tight drop-shadow">
             {coffee.name[lang]}
           </div>
         </div>
-        <div
-          className="pointer-events-none absolute inset-0 opacity-90"
-          style={{ background: "linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%)" }}
-        />
       </button>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <p className="text-sm text-muted-foreground">{coffee.tagline[lang]}</p>

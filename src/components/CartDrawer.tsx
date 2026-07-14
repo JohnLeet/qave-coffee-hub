@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Coffee as CoffeeIcon, Cog, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
+import { Coffee as CoffeeIcon, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useI18n } from "@/lib/i18n";
 import { coffees } from "@/lib/data";
@@ -63,10 +63,14 @@ export function CartDrawer() {
                 <div className="space-y-3">
                   <div className="overflow-hidden rounded-2xl border border-border bg-card">
                     <div
-                      className="flex h-24 w-full items-center justify-center"
+                      className="relative h-28 w-full overflow-hidden"
                       style={{ background: machineInCart.gradient }}
                     >
-                      <Cog className="h-8 w-8 text-white/50" />
+                      <img
+                        src={machineInCart.image}
+                        alt={machineInCart.name[lang]}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
                     </div>
                     <div className="p-4">
                       <div className="flex items-start justify-between gap-3">
@@ -150,10 +154,10 @@ export function CartDrawer() {
                             className="flex items-center gap-3 rounded-xl px-2 py-2 hover:bg-secondary"
                           >
                             <div
-                              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-white"
+                              className="relative h-9 w-9 shrink-0 overflow-hidden rounded-xl"
                               style={{ background: c.gradient }}
                             >
-                              <CoffeeIcon className="h-4 w-4" />
+                              <img src={c.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
                             </div>
                             <div className="min-w-0 flex-1">
                               <div className="truncate text-sm font-medium">{c.name[lang]}</div>
@@ -196,10 +200,10 @@ export function CartDrawer() {
                     className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3"
                   >
                     <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white"
+                      className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl"
                       style={{ background: coffee.gradient }}
                     >
-                      <CoffeeIcon className="h-5 w-5" />
+                      <img src={coffee.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-sm font-medium">{coffee.name[lang]}</div>

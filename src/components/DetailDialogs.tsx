@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Coffee as CoffeeIcon, Cog, Plus, Check } from "lucide-react";
+import { Coffee as CoffeeIcon, Plus, Check } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import type { Coffee, Machine } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
@@ -25,12 +25,16 @@ export function MachineDetail({
         {machine && (
           <>
             <div
-              className="relative flex aspect-[16/9] w-full items-center justify-center"
+              className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden"
               style={{ background: machine.gradient }}
             >
-              <Cog className="h-24 w-24 text-white/25" />
+              <img
+                src={machine.image}
+                alt={machine.name[lang]}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
               {isThisFree && (
-                <span className="absolute left-4 top-4 rounded-full bg-[var(--success)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--success-foreground)]">
+                <span className="absolute left-4 top-4 z-10 rounded-full bg-[var(--success)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--success-foreground)]">
                   {t("cart_free_badge")}
                 </span>
               )}
@@ -105,14 +109,24 @@ export function CoffeeDetail({ coffee, onClose }: { coffee: Coffee | null; onClo
         {coffee && (
           <>
             <div
-              className="relative flex aspect-[16/9] w-full items-end p-6 text-white"
+              className="relative flex aspect-[16/9] w-full items-end overflow-hidden p-6 text-white"
               style={{ background: coffee.gradient }}
             >
-              <div>
-                <div className="text-[11px] uppercase tracking-widest text-white/70">
+              <img
+                src={coffee.image}
+                alt={coffee.name[lang]}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)" }}
+              />
+              <div className="relative z-10">
+                <div className="text-[11px] uppercase tracking-widest text-white/80">
                   {coffee.roast[lang]}
                 </div>
-                <div className="font-display text-3xl font-semibold">{coffee.name[lang]}</div>
+                <div className="font-display text-3xl font-semibold drop-shadow">{coffee.name[lang]}</div>
               </div>
             </div>
             <div className="p-6 sm:p-8">
