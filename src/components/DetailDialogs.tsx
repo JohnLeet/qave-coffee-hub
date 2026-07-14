@@ -109,14 +109,24 @@ export function CoffeeDetail({ coffee, onClose }: { coffee: Coffee | null; onClo
         {coffee && (
           <>
             <div
-              className="relative flex aspect-[16/9] w-full items-end p-6 text-white"
+              className="relative flex aspect-[16/9] w-full items-end overflow-hidden p-6 text-white"
               style={{ background: coffee.gradient }}
             >
-              <div>
-                <div className="text-[11px] uppercase tracking-widest text-white/70">
+              <img
+                src={coffee.image}
+                alt={coffee.name[lang]}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)" }}
+              />
+              <div className="relative z-10">
+                <div className="text-[11px] uppercase tracking-widest text-white/80">
                   {coffee.roast[lang]}
                 </div>
-                <div className="font-display text-3xl font-semibold">{coffee.name[lang]}</div>
+                <div className="font-display text-3xl font-semibold drop-shadow">{coffee.name[lang]}</div>
               </div>
             </div>
             <div className="p-6 sm:p-8">
