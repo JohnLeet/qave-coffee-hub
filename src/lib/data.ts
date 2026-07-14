@@ -35,11 +35,13 @@ export type Coffee = {
   notes: { ru: string; uz: string }[];
   roast: { ru: string; uz: string };
   gradient: string;
+  image: string;
 };
 
 export const machines: Machine[] = [
   {
     id: "m1",
+    image: machinePrimo,
     slug: "qave-primo-2",
     kind: "machine",
     name: { ru: "QAVE Primo 2", uz: "QAVE Primo 2" },
@@ -59,6 +61,7 @@ export const machines: Machine[] = [
   },
   {
     id: "m2",
+    image: machineUno,
     slug: "qave-uno",
     kind: "machine",
     name: { ru: "QAVE Uno", uz: "QAVE Uno" },
@@ -78,6 +81,7 @@ export const machines: Machine[] = [
   },
   {
     id: "m3",
+    image: machineOffice,
     slug: "qave-office",
     kind: "machine",
     name: { ru: "QAVE Office", uz: "QAVE Office" },
@@ -97,6 +101,7 @@ export const machines: Machine[] = [
   },
   {
     id: "m4",
+    image: machineHoreca,
     slug: "qave-horeca-pro",
     kind: "machine",
     name: { ru: "QAVE HoReCa Pro", uz: "QAVE HoReCa Pro" },
@@ -116,6 +121,7 @@ export const machines: Machine[] = [
   },
   {
     id: "a1",
+    image: accGrinder,
     slug: "grinder-mono",
     kind: "accessory",
     name: { ru: "Кофемолка Mono", uz: "Mono tegirmoni" },
@@ -131,6 +137,7 @@ export const machines: Machine[] = [
   },
   {
     id: "a2",
+    image: accChemistry,
     slug: "chemistry-kit",
     kind: "accessory",
     name: { ru: "Комплект химии", uz: "Kimyo to‘plami" },
@@ -148,6 +155,7 @@ export const machines: Machine[] = [
 export const coffees: Coffee[] = [
   {
     id: "c1",
+    image: coffeeSignature,
     slug: "signature-espresso",
     name: { ru: "Signature Espresso", uz: "Signature Espresso" },
     tagline: { ru: "Универсальный бленд для эспрессо", uz: "Espresso uchun universal blend" },
@@ -163,6 +171,7 @@ export const coffees: Coffee[] = [
   },
   {
     id: "c2",
+    image: coffeeBrazil,
     slug: "brazil-santos",
     name: { ru: "Brazil Santos", uz: "Brazil Santos" },
     tagline: { ru: "Моносорт из Бразилии", uz: "Braziliyadan monosort" },
@@ -177,6 +186,7 @@ export const coffees: Coffee[] = [
   },
   {
     id: "c3",
+    image: coffeeEthiopia,
     slug: "ethiopia-yirgacheffe",
     name: { ru: "Ethiopia Yirgacheffe", uz: "Ethiopia Yirgacheffe" },
     tagline: { ru: "Фильтр моносорт", uz: "Filtr uchun monosort" },
@@ -192,6 +202,7 @@ export const coffees: Coffee[] = [
   },
   {
     id: "c4",
+    image: coffeeColombia,
     slug: "colombia-supremo",
     name: { ru: "Colombia Supremo", uz: "Colombia Supremo" },
     tagline: { ru: "Сбалансированный моносорт", uz: "Balanslangan monosort" },
