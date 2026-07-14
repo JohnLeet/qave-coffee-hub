@@ -1,3 +1,14 @@
+import coffeeSignature from "@/assets/coffee-signature.jpg";
+import coffeeBrazil from "@/assets/coffee-brazil.jpg";
+import coffeeEthiopia from "@/assets/coffee-ethiopia.jpg";
+import coffeeColombia from "@/assets/coffee-colombia.jpg";
+import machinePrimo from "@/assets/machine-primo.jpg";
+import machineUno from "@/assets/machine-uno.jpg";
+import machineOffice from "@/assets/machine-office.jpg";
+import machineHoreca from "@/assets/machine-horeca.jpg";
+import accGrinder from "@/assets/acc-grinder.jpg";
+import accChemistry from "@/assets/acc-chemistry.jpg";
+
 export type Prices = { rub: number; uzs: number };
 
 export type Machine = {
