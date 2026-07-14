@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  cafops:
+    image: qavelanding:local
+    ports:
+      - "8044:3000"
