@@ -3,9 +3,12 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY . .
+
+ARG VITE_COFFEE_PUBLIC_URL=http://localhost:4001
+ENV VITE_COFFEE_PUBLIC_URL=$VITE_COFFEE_PUBLIC_URL
 
 RUN npm run build
 

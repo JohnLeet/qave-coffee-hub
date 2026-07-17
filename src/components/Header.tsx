@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Coffee, Menu, Phone, ShoppingBag } from "lucide-react";
+import { Building2, Coffee, Menu, Phone, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -62,6 +62,15 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <LangSwitcher className="hidden sm:inline-flex" />
+          <button
+            type="button"
+            title={t("nav_b2b_soon")}
+            className="hidden items-center gap-1.5 rounded-full border border-dashed border-border px-3 py-2 text-sm text-muted-foreground lg:inline-flex"
+            disabled
+          >
+            <Building2 className="h-3.5 w-3.5" />
+            {t("nav_b2b")}
+          </button>
           <a
             href="tel:+998990000000"
             className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm text-muted-foreground hover:text-foreground md:inline-flex"

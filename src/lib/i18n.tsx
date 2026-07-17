@@ -11,6 +11,8 @@ export const dict: Dict = {
   nav_training: { ru: "Обучение бариста", uz: "Barista o‘qitish" },
   nav_catalog: { ru: "Каталог", uz: "Katalog" },
   nav_contacts: { ru: "Контакты", uz: "Kontaktlar" },
+  nav_b2b: { ru: "Для бизнеса", uz: "Biznes uchun" },
+  nav_b2b_soon: { ru: "Личный кабинет — скоро", uz: "Shaxsiy kabinet — tez orada" },
   cta_request: { ru: "Заявка", uz: "Ariza" },
   // hero
   hero_badge: { ru: "Собственная обжарка • оборудование • сервис", uz: "Xususiy qovurish • uskuna • xizmat" },

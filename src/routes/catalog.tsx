@@ -10,7 +10,8 @@ import { CoffeeCard } from "@/components/CoffeeCard";
 import { CoffeeDetail, MachineDetail } from "@/components/DetailDialogs";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
-import { coffees, machines, type Coffee, type Machine } from "@/lib/data";
+import type { Coffee, Machine } from "@/lib/data";
+import { useCatalogProducts } from "@/hooks/use-catalog";
 import { cn } from "@/lib/utils";
 
 const searchSchema = z.object({
@@ -35,6 +36,9 @@ function CatalogPage() {
   const navigate = useNavigate();
   const search = Route.useSearch();
   const filter: Filter = search.filter ?? "all";
+  const { data, isLoading } = useCatalogProducts();
+  const coffees = data?.coffees ?? [];
+  const machines = data?.machines ?? [];
 
   const [machineDetail, setMachineDetail] = useState<Machine | null>(null);
   const [coffeeDetail, setCoffeeDetail] = useState<Coffee | null>(null);
@@ -75,6 +79,7 @@ function CatalogPage() {
         </button>
 
         <h1 className="font-display text-4xl tracking-tight sm:text-5xl">{t("cat_title")}</h1>
+        {isLoading && <p className="mt-2 text-sm text-muted-foreground">Загрузка каталога…</p>}
 
         <div className="mt-6 flex flex-wrap gap-2">
           {tabs.map((tab) => (
@@ -98,7 +103,11 @@ function CatalogPage() {
             <h2 className="font-display text-xl font-semibold">{t("cat_coffee")}</h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {coffees.map((c) => (
-                <CoffeeCard key={c.id} coffee={c} onOpen={setCoffeeDetail} />
+                <CoffeeCard
+                  key={c.id}
+                  coffee={c}
+                  onOpen={(coffee) => navigate({ to: "/catalog/$slug", params: { slug: coffee.slug } })}
+                />
               ))}
             </div>
           </section>
@@ -111,7 +120,11 @@ function CatalogPage() {
             </h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {machineList.map((m) => (
-                <MachineCard key={m.id} machine={m} onOpen={setMachineDetail} />
+                <MachineCard
+                  key={m.id}
+                  machine={m}
+                  onOpen={(machine) => navigate({ to: "/catalog/$slug", params: { slug: machine.slug } })}
+                />
               ))}
             </div>
           </section>
