@@ -25,7 +25,8 @@ import {
 import { QtyControl } from "@/components/CoffeeCard";
 import { useCart } from "@/lib/cart";
 import { useI18n } from "@/lib/i18n";
-import { coffees } from "@/lib/data";
+import { buildOrderItems, createPublicOrder } from "@/lib/orders-api";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -50,7 +51,7 @@ function CheckoutPage() {
   const navigate = useNavigate();
   const {
     machineInCart, coffeeItems, totalCoffeeKg, isMachineFree,
-    removeMachine, addCoffee, setCoffeeKg,
+    removeMachine, addCoffee, setCoffeeKg, catalogCoffees, clearCart,
   } = useCart();
 
   const [form, setForm] = useState({ name: "", phone: "", email: "", comment: "" });
@@ -95,15 +96,26 @@ function CheckoutPage() {
     return false;
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isEmpty) return;
     if (!validate()) return;
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const items = buildOrderItems(machineInCart, coffeeItems, isMachineFree, lang);
+      await createPublicOrder({
+        customer: form.name.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim() || undefined,
+        comment: form.comment.trim() || undefined,
+        items,
+      });
       setSuccess(true);
-    }, 700);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : L("Не удалось отправить заказ", "Buyurtmani yuborib bo‘lmadi"));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const errText = (k: string) => {
@@ -323,7 +335,7 @@ function CheckoutPage() {
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-[340px] p-2">
-                      {coffees.map((c) => {
+                      {catalogCoffees.map((c) => {
                         const kg = coffeeItems.find((i) => i.coffee.id === c.id)?.kg ?? 0;
                         return (
                           <div
@@ -418,9 +430,7 @@ function CheckoutPage() {
         onOpenChange={(v) => {
           setSuccess(v);
           if (!v) {
-            // Clean up cart-affecting state on close
-            if (machineInCart) removeMachine(machineInCart.id);
-            for (const { coffee } of coffeeItems) setCoffeeKg(coffee.id, 0);
+            clearCart();
             navigate({ to: "/" });
           }
         }}
@@ -440,8 +450,7 @@ function CheckoutPage() {
               className="mt-6 w-full rounded-full"
               onClick={() => {
                 setSuccess(false);
-                if (machineInCart) removeMachine(machineInCart.id);
-                for (const { coffee } of coffeeItems) setCoffeeKg(coffee.id, 0);
+                clearCart();
                 navigate({ to: "/" });
               }}
             >

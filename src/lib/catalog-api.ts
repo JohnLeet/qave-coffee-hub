@@ -21,6 +21,7 @@ export type PublicProduct = {
   brand?: string;
   category?: string;
   rentPrice?: number;
+  monthlyKg?: number;
 };
 
 type PublicProductList = {
@@ -45,6 +46,7 @@ export function mapCoffee(product: PublicProduct): Coffee {
     name: pair(product.name),
     tagline: pair(product.origin ? `${product.origin} · ${product.weightG ?? 250} г` : product.name),
     description: pair(product.description ?? product.notes ?? product.name),
+    priceUsd: product.price,
     pricePerKg: prices(product.price),
     notes: notes.length ? notes : [pair("specialty")],
     roast: roasts[product.roast ?? "medium"],
@@ -54,6 +56,8 @@ export function mapCoffee(product: PublicProduct): Coffee {
 }
 
 export function mapMachine(product: PublicProduct): Machine {
+  const monthlyKg = product.monthlyKg ?? (product.kind === "accessory" ? 3 : 8);
+  const rentUsd = product.rentPrice ?? product.price;
   return {
     id: product.id,
     slug: product.slug,
@@ -61,8 +65,9 @@ export function mapMachine(product: PublicProduct): Machine {
     name: pair(product.name),
     tagline: pair(product.brand ?? product.category ?? ""),
     description: pair(product.description ?? product.name),
-    rent: prices(product.rentPrice ?? product.price),
-    freeThresholdKg: product.kind === "accessory" ? 3 : 8,
+    rentPriceUsd: rentUsd,
+    rent: prices(rentUsd),
+    freeThresholdKg: monthlyKg,
     specs: [
       { label: pair("Бренд"), value: pair(product.brand ?? "QAVE") },
       { label: pair("Наличие"), value: pair(product.inStock ? "в наличии" : "под заказ") },

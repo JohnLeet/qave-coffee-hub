@@ -18,7 +18,8 @@ export type Machine = {
   name: { ru: string; uz: string };
   tagline: { ru: string; uz: string };
   description: { ru: string; uz: string };
-  rent: Prices; // monthly
+  rentPriceUsd: number;
+  rent: Prices; // monthly display
   freeThresholdKg: number;
   specs: { label: { ru: string; uz: string }; value: { ru: string; uz: string } }[];
   gradient: string;
@@ -31,6 +32,7 @@ export type Coffee = {
   name: { ru: string; uz: string };
   tagline: { ru: string; uz: string };
   description: { ru: string; uz: string };
+  priceUsd: number;
   pricePerKg: Prices;
   notes: { ru: string; uz: string }[];
   roast: { ru: string; uz: string };
@@ -50,6 +52,7 @@ export const machines: Machine[] = [
       ru: "Профессиональная двухгруппная эспрессо-машина для кофеен с потоком до 400 чашек в день. Стабильная температура группы и мощный паровой контур.",
       uz: "Kuniga 400 chashkagacha oqim uchun professional ikki guruhli espresso-mashinasi.",
     },
+    rentPriceUsd: 150,
     rent: { rub: 15000, uzs: 2000000 },
     freeThresholdKg: 10,
     specs: [
@@ -70,6 +73,7 @@ export const machines: Machine[] = [
       ru: "Одногруппная эспрессо-машина для небольших точек, кофе-баров и take away. Быстрый прогрев и низкое энергопотребление.",
       uz: "Kichik nuqtalar va take away uchun bir guruhli espresso-mashinasi.",
     },
+    rentPriceUsd: 90,
     rent: { rub: 9000, uzs: 1200000 },
     freeThresholdKg: 6,
     specs: [
@@ -90,6 +94,7 @@ export const machines: Machine[] = [
       ru: "Автоматическая кофемашина для офисов на 20–120 сотрудников. Пресет-меню и обслуживание одной кнопкой.",
       uz: "20–120 xodimli ofislar uchun avtomatik kofemashina.",
     },
+    rentPriceUsd: 120,
     rent: { rub: 12000, uzs: 1600000 },
     freeThresholdKg: 8,
     specs: [
@@ -110,6 +115,7 @@ export const machines: Machine[] = [
       ru: "Флагман для высоконагруженных заведений с потоком до 800 чашек в день. PID-контроль каждой группы.",
       uz: "Yuqori yuklamali muassasalar uchun flagman model.",
     },
+    rentPriceUsd: 220,
     rent: { rub: 22000, uzs: 2900000 },
     freeThresholdKg: 15,
     specs: [
@@ -127,6 +133,7 @@ export const machines: Machine[] = [
     name: { ru: "Кофемолка Mono", uz: "Mono tegirmoni" },
     tagline: { ru: "Прямой помол под эспрессо", uz: "Espresso uchun to‘g‘ridan-to‘g‘ri maydalash" },
     description: { ru: "Профессиональная кофемолка с прямым помолом и таймером порций.", uz: "Professional tegirmon." },
+    rentPriceUsd: 40,
     rent: { rub: 4000, uzs: 550000 },
     freeThresholdKg: 5,
     specs: [
@@ -143,6 +150,7 @@ export const machines: Machine[] = [
     name: { ru: "Комплект химии", uz: "Kimyo to‘plami" },
     tagline: { ru: "Уход за оборудованием", uz: "Uskunani parvarishlash" },
     description: { ru: "Средства для чистки групп, молочных контуров и декальцинации.", uz: "Tozalash vositalari to‘plami." },
+    rentPriceUsd: 25,
     rent: { rub: 2500, uzs: 350000 },
     freeThresholdKg: 3,
     specs: [
@@ -160,6 +168,7 @@ export const coffees: Coffee[] = [
     name: { ru: "Signature Espresso", uz: "Signature Espresso" },
     tagline: { ru: "Универсальный бленд для эспрессо", uz: "Espresso uchun universal blend" },
     description: { ru: "Плотное тело, шоколад и орех. Отлично работает с молоком.", uz: "Zich tan, shokolad va yong‘oq. Sut bilan zo‘r." },
+    priceUsd: 18,
     pricePerKg: { rub: 1800, uzs: 250000 },
     notes: [
       { ru: "молочный шоколад", uz: "sutli shokolad" },
@@ -176,6 +185,7 @@ export const coffees: Coffee[] = [
     name: { ru: "Brazil Santos", uz: "Brazil Santos" },
     tagline: { ru: "Моносорт из Бразилии", uz: "Braziliyadan monosort" },
     description: { ru: "Мягкий вкус с нотами какао и ореха. База большинства блендов.", uz: "Yumshoq ta’m." },
+    priceUsd: 16,
     pricePerKg: { rub: 1600, uzs: 220000 },
     notes: [
       { ru: "какао", uz: "kakao" },
@@ -191,6 +201,7 @@ export const coffees: Coffee[] = [
     name: { ru: "Ethiopia Yirgacheffe", uz: "Ethiopia Yirgacheffe" },
     tagline: { ru: "Фильтр моносорт", uz: "Filtr uchun monosort" },
     description: { ru: "Цитрус, жасмин, чайное послевкусие. Для фильтр-кофе и альтернативы.", uz: "Sitrus, yasemin, choyli keyingi ta’m." },
+    priceUsd: 24,
     pricePerKg: { rub: 2400, uzs: 320000 },
     notes: [
       { ru: "лимон", uz: "limon" },
@@ -207,6 +218,7 @@ export const coffees: Coffee[] = [
     name: { ru: "Colombia Supremo", uz: "Colombia Supremo" },
     tagline: { ru: "Сбалансированный моносорт", uz: "Balanslangan monosort" },
     description: { ru: "Ягодная кислотность, ореховая сладость. Универсально для эспрессо и капучино.", uz: "Rezavor kislotalik, yong‘oqli shirinlik." },
+    priceUsd: 19,
     pricePerKg: { rub: 1900, uzs: 260000 },
     notes: [
       { ru: "красное яблоко", uz: "qizil olma" },
