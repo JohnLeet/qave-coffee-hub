@@ -233,7 +233,7 @@ export function CartDrawer() {
               className="mt-3 w-full rounded-full"
               onClick={() => {
                 setOpen(false);
-                setTimeout(() => document.getElementById("form")?.scrollIntoView({ behavior: "smooth" }), 200);
+                navigate({ to: "/checkout" });
               }}
             >
               {t("cart_checkout")}
