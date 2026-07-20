@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function CartDrawer() {
   const { lang, t, fmt } = useI18n();
+  const navigate = useNavigate();
   const {
     open, setOpen,
     machineInCart, coffeeItems, totalCoffeeKg, isMachineFree,
@@ -231,7 +233,7 @@ export function CartDrawer() {
               className="mt-3 w-full rounded-full"
               onClick={() => {
                 setOpen(false);
-                setTimeout(() => document.getElementById("form")?.scrollIntoView({ behavior: "smooth" }), 200);
+                navigate({ to: "/checkout" });
               }}
             >
               {t("cart_checkout")}
