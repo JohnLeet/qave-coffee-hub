@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function CartDrawer() {
   const { lang, t, fmt } = useI18n();
+  const navigate = useNavigate();
   const {
     open, setOpen,
     machineInCart, coffeeItems, totalCoffeeKg, isMachineFree,
