@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -9,15 +10,15 @@ import {
 import { Coffee as CoffeeIcon, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useI18n } from "@/lib/i18n";
-import { coffees } from "@/lib/data";
 import { QtyControl } from "./CoffeeCard";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function CartDrawer() {
   const { lang, t, fmt } = useI18n();
+  const navigate = useNavigate();
   const {
     open, setOpen,
-    machineInCart, coffeeItems, totalCoffeeKg, isMachineFree,
+    machineInCart, coffeeItems, totalCoffeeKg, isMachineFree, catalogCoffees,
     removeMachine, addCoffee, setCoffeeKg,
   } = useCart();
 
@@ -146,7 +147,7 @@ export function CartDrawer() {
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-[340px] p-2">
-                      {coffees.map((c) => {
+                      {catalogCoffees.map((c) => {
                         const kg = coffeeItems.find((i) => i.coffee.id === c.id)?.kg ?? 0;
                         return (
                           <div
@@ -231,7 +232,7 @@ export function CartDrawer() {
               className="mt-3 w-full rounded-full"
               onClick={() => {
                 setOpen(false);
-                setTimeout(() => document.getElementById("form")?.scrollIntoView({ behavior: "smooth" }), 200);
+                navigate({ to: "/checkout" });
               }}
             >
               {t("cart_checkout")}
