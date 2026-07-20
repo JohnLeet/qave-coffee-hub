@@ -59,7 +59,9 @@ function ProductPage() {
             <p className="text-lg text-muted-foreground">{item.tagline[lang]}</p>
             <p className="text-sm leading-relaxed text-muted-foreground">{item.description[lang]}</p>
             <div className="text-2xl font-semibold">
-              {kind === "coffee" ? `${fmt(item.pricePerKg)} / кг` : `${fmt(item.rent)} / мес`}
+              {kind === "coffee"
+                ? fmt(item.pricePerKg.rub, item.pricePerKg.uzs, "kg")
+                : fmt(item.rent.rub, item.rent.uzs, "month")}
             </div>
             <Button
               className="rounded-full"
