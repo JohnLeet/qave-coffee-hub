@@ -32,7 +32,8 @@ import { CoffeeDetail, MachineDetail } from "@/components/DetailDialogs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n";
-import { coffees, machines, type Coffee, type Machine } from "@/lib/data";
+import type { Coffee, Machine } from "@/lib/data";
+import { useCatalogProducts } from "@/hooks/use-catalog";
 import heroCoffee from "@/assets/hero-coffee.jpg";
 import roastery from "@/assets/roastery.jpg";
 import baristaImg from "@/assets/barista.jpg";
@@ -315,6 +316,8 @@ function Roast() {
 function Machines() {
   const { t } = useI18n();
   const navigate = useNavigate();
+  const { data, isLoading } = useCatalogProducts();
+  const machines = data?.machines ?? [];
   const cards = [
     {
       k: "s4_c1",
@@ -362,7 +365,11 @@ function Machines() {
       </div>
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {machines.filter((m) => m.kind === "machine").slice(0, 3).map((m) => (
+        {isLoading && <p className="col-span-full text-sm text-muted-foreground">Загрузка каталога…</p>}
+        {machines
+          .filter((m) => m.kind === "machine")
+          .slice(0, 3)
+          .map((m) => (
           <MachineCard
             key={m.id}
             machine={m}
@@ -478,6 +485,8 @@ function Training() {
 function CoffeePreview({ onOpen }: { onOpen: (c: Coffee) => void }) {
   const { t } = useI18n();
   const navigate = useNavigate();
+  const { data, isLoading } = useCatalogProducts();
+  const coffees = data?.coffees ?? [];
   return (
     <section id="coffee" className="container-x scroll-mt-24 py-20 sm:py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
@@ -486,8 +495,9 @@ function CoffeePreview({ onOpen }: { onOpen: (c: Coffee) => void }) {
           {t("s8_view_all")} <ArrowRight className="h-4 w-4" />
         </Button>
       </div>
+      {isLoading && <p className="mt-6 text-sm text-muted-foreground">Загрузка каталога…</p>}
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {coffees.map((c) => (
+        {coffees.slice(0, 4).map((c) => (
           <CoffeeCard key={c.id} coffee={c} onOpen={onOpen} />
         ))}
       </div>
