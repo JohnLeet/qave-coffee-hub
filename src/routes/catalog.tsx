@@ -62,10 +62,12 @@ function CatalogPage() {
         if (filter === "all") return true;
         return false;
       }),
-    [filter],
+    [filter, machines],
   );
 
-  const isEmpty = !showCoffee && machineList.length === 0;
+  const hasCoffee = showCoffee && coffees.length > 0;
+  const hasMachines = (showMachines || showAccessories) && machineList.length > 0;
+  const isEmpty = !isLoading && !hasCoffee && !hasMachines;
 
   return (
     <div className="min-h-screen">
